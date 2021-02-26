@@ -44,7 +44,7 @@ pipeline {
                     branch 'kubernetescli_test'
                 }
                 steps {
-                    withKubeConfig([credentialsId: 'kubeconfig_cloudacedemyk8s']) {
+                    withKubeConfig([credentialsId: 'kubeconfig']) {
                         sh 'kubectl get pods'
                 }
             }

@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'gokhan_test'
+                branch 'kubernetescli_test'
             }
             steps {
                 script {
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             when {
-                branch 'gokhan_test'
+                branch 'kubernetescli_test'
             }
             steps {
                 script {
@@ -41,12 +41,12 @@ pipeline {
         }
         stage('DeployToProduction') {
             when {
-                branch 'gokhan_test'
+                branch 'kubernetescli_test'
             }
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://172.31.24.187:6443']) {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
                   sh 'kubectl get pods'
                 }
             }

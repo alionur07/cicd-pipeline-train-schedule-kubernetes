@@ -39,14 +39,14 @@ pipeline {
                 }
             }
         }
-        node{
-            stage('DeployToProduction') {
-                when {
-                    branch 'kubernetescli_test'
-                }
-                steps {
-                    withKubeConfig([credentialsId: 'kubeconfig']) {
-                        sh 'kubectl get pods'
+    node{
+        stage('DeployToProduction') {
+            when {
+                branch 'kubernetescli_test'
+            }
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'kubectl get pods'
                     }
                 }
             }

@@ -5,7 +5,8 @@ pipeline {
         //be sure to replace "willbla" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "gsimsek/train-schedule-kubernetes"
     }
-    stages {
+    node{
+      stages {
         stage('Build') {
             steps {
                 echo 'Running build automation'
@@ -48,8 +49,10 @@ pipeline {
                 milestone(1)
                 withKubeConfig([credentialsId: 'kubeconfig']) {
                   sh 'kubectl get pods'
+                    }
                 }
             }
         }
     }
 }
+    

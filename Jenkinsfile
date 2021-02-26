@@ -47,8 +47,9 @@ pipeline {
                 steps {
                     withKubeConfig([credentialsId: 'kubeconfig']) {
                         sh 'kubectl get pods'
-                  }
-              }
-          }
-     }
+                    }
+                }
+            }
+        }
+    }
 }
